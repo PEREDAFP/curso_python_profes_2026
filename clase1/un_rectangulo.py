@@ -7,7 +7,7 @@ pygame.init()
 # Configurar ventana
 ANCHO, ALTO = 600, 400
 ventana = pygame.display.set_mode((ANCHO, ALTO))
-pygame.display.set_caption("Movimiento con teclas A, S, W, Z")
+pygame.display.set_caption("Movimiento con las teclas de flecha")
 
 # Definir colores
 BLANCO = (255, 255, 255)
@@ -18,7 +18,7 @@ rect_x = 100
 rect_y = 100
 rect_ancho = 50
 rect_alto = 50
-velocidad = 5
+cambio = 5
 
 # Bucle principal
 reloj = pygame.time.Clock()
@@ -30,15 +30,16 @@ while True:
             sys.exit()
 
     # Teclas presionadas
+
     teclas = pygame.key.get_pressed()
-    if teclas[pygame.K_a]:
-        rect_x -= velocidad
-    if teclas[pygame.K_s]:
-        rect_x += velocidad
-    if teclas[pygame.K_w]:
-        rect_y -= velocidad
-    if teclas[pygame.K_z]:
-        rect_y += velocidad
+    if teclas[pygame.K_LEFT]:
+        rect_x -= cambio
+    if teclas[pygame.K_RIGHT]:
+        rect_x += cambio
+    if teclas[pygame.K_UP]:
+        rect_y -= cambio
+    if teclas[pygame.K_DOWN]:
+        rect_y += cambio
 
     # Dibujar escena
     ventana.fill(BLANCO)

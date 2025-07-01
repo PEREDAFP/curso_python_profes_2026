@@ -33,8 +33,8 @@ rect1 = pygame.Rect(100, 100, 50, 50)
 # Rectángulo 2 (azul)
 rect2 = pygame.Rect(400, 200, 51, 52)
 print(rect2.y, rect2.x, rect2.h, rect2.w)
-# Velocidad
-velocidad = 5
+# cambio
+cambio = 5
 
 # Reloj
 reloj = pygame.time.Clock()
@@ -50,23 +50,23 @@ while True:
 
     # Movimiento del rectángulo rojo (jugador 1)
     if teclas[pygame.K_a]:
-        rect1.x -= velocidad
+        rect1.x -= cambio
     if teclas[pygame.K_s]:
-        rect1.x += velocidad
+        rect1.x += cambio
     if teclas[pygame.K_w]:
-        rect1.y -= velocidad
+        rect1.y -= cambio
     if teclas[pygame.K_z]:
-        rect1.y += velocidad
+        rect1.y += cambio
 
     # Movimiento del rectángulo azul (jugador 2)
     if teclas[pygame.K_k]:
-        rect2.x -= velocidad
+        rect2.x -= cambio
     if teclas[pygame.K_o]:
-        rect2.x += velocidad
+        rect2.x += cambio
     if teclas[pygame.K_i]:
-        rect2.y -= velocidad
+        rect2.y -= cambio
     if teclas[pygame.K_m]:
-        rect2.y += velocidad
+        rect2.y += cambio
 
     # Dibujar
     ventana.fill(BLANCO)
