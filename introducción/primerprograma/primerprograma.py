@@ -6,11 +6,11 @@ print(f"Hola, {nombre}!")
 
 
 
-if nombre == "Pedro":
+""" if nombre == "Pedro":floor
     print("Pues el nombre que has introducido es Pedro")
     print("línea de más")
 else:
     print("El nombre que has introducido no es PEdro")
     print("línea de más")
 
-
+ """

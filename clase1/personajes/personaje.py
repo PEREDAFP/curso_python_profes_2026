@@ -15,7 +15,7 @@ pygame.key.set_repeat(1,25)
 reloj = pygame.time.Clock()
  
  
-fasemov=0
+fase_mov=0
  
 pos=50
  
@@ -35,18 +35,18 @@ while True:
         teclasPulsadas = pygame.key.get_pressed()
         if teclasPulsadas[pygame.K_a]:
             pos-=1
-            fasemov -= 1
-            if fasemov <0: 
-               fasemov = len(movbicho) - 1
+            fase_mov -= 1
+            if fase_mov <0: 
+               fase_mov = len(movbicho) - 1
         
         if teclasPulsadas[pygame.K_s]:
             pos+=1
-            fasemov += 1
-            if fasemov >= len(movbicho):
-                fasemov = 0
+            fase_mov += 1
+            if fase_mov >= len(movbicho):
+                fase_mov = 0
         
         visor.fill((255,255,255))
-        visor.blit(bicho, (pos,100), movbicho[fasemov])
+        visor.blit(bicho, (pos,100), movbicho[fase_mov])
         pygame.display.flip()
         reloj.tick(40)
     
