@@ -6,7 +6,7 @@ pygame.init()
 
 # Configurar ventana
 ventana = pygame.display.set_mode((600, 400))
-pygame.display.set_caption("Movimiento con las teclas de flecha")
+pygame.display.set_caption("Cuadro rojo sobre fondo blanco")
 
 # Definir colores
 
