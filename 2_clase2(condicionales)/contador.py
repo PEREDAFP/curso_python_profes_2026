@@ -39,7 +39,7 @@ while True:
     if espera == 0 :
         if teclas[pygame.K_PLUS]:
             contador += 1
-            espera = FPS
+            espera = FPS  # al igualar la espera a los FPS tendremos que esperar un segundo entre pulsaciones
         if teclas[pygame.K_MINUS]:
             contador -= 1
             espera = FPS

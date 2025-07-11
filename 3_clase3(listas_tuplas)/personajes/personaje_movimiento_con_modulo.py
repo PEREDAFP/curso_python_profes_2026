@@ -54,12 +54,11 @@ while True:
     if teclasPulsadas[pygame.K_a]:
         pos_x -=  AUMENTO_PIXELES_X
         margen -= ANCHO_IMAGEN
-        margen %= (ANCHO_IMAGEN * TOTAL_MOVIMIENTOS) #Si nos hemos ido a valores negativos, al hacer el módulo volveremos a la primera posición por la derecha
-        
+        margen %= (ANCHO_IMAGEN * TOTAL_MOVIMIENTOS) #Si nos hemos ido a valores negativos, al hacer el módulo obtenemos un valor de margen que se encuentre los valores
     if teclasPulsadas[pygame.K_s]:
         pos_x += AUMENTO_PIXELES_X
         margen += ANCHO_IMAGEN
-        margen %= (ANCHO_IMAGEN * TOTAL_MOVIMIENTOS) #Si nos hemos ido a valores superiores a la longitud de la lista
+        margen %= (ANCHO_IMAGEN * TOTAL_MOVIMIENTOS) #Si nos hemos ido a valores superiores el módulo nos devuelve a nuestro rango
     
     visor.fill(BLANCO)
     visor.blit(bicho, (pos_x, pos_y), (margen, MARGEN_SUPERIOR, ANCHO_PERSONAJE, ALTO_PERSONAJE))

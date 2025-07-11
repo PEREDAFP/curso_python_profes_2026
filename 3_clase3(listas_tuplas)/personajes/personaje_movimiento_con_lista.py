@@ -9,7 +9,7 @@ Basta con descomentar y comentar los movbicho correspondientes
 pygame.init()
 
 ANCHO = 400
-ALTO = 200
+ALTO = 400
 visor = pygame.display.set_mode((ANCHO,ALTO))
  
 pygame.display.set_caption("Movimientos Personaje desde lista")
@@ -36,7 +36,9 @@ pos = 50 #posición x de la ventana donde se mostrará al personaje
 #movbicho esquemático
 #movbicho=[(0,0,200,400),(400,0,200,400),(600,0,200,400),(1000,0,200,400)]
 #movbicho hombre andando
-movbicho = [(0,0,90,175),(100,0,90,175),(200,0,90,175),(300,0,90,175),(400,0,90,175),(500,0,90,175),(600,0,90,175),(700,0,90,175),(800,0,90,175)] 
+movbicho = ((0,0,90,175),(100,0,90,175),(200,0,90,175),(300,0,90,175),
+            (400,0,90,175),(500,0,90,175),(600,0,90,175),(700,0,90,175),
+            (800,0,90,175))
 
 while True:
     for event in pygame.event.get():
