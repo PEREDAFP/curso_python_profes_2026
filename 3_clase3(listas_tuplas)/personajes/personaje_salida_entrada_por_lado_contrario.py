@@ -1,5 +1,11 @@
 import pygame, sys
  
+'''
+Repetimos el ejercicio que ya hicimos con el rectángulo para que el personaje tenga un movimiento continuo a 
+través de la pantalla.
+Esto nos va a permitir trabajar con diferentes escenarios como veremos en el siguiente ejercicio.
+'''
+
 
 #VARIABLES Y CONSTANTES
 #anchos y altos de ventana y personaje
@@ -57,7 +63,13 @@ while True:
             pos_x += AUMENTO_PIXELES_X
             margen += ANCHO_IMAGEN
             margen %= (ANCHO_IMAGEN * TOTAL_MOVIMIENTOS)
+        #Hacemos que el movimiento del personaje sea cíclico en la pantalla
+        #Si sale por la derecha, vuelve por la izquierda. Dejamos al alumno que cambie -ANCHO_IMAGEN por 0 
+        if pos_x > ANCHO_VENTANA: pos_x = -ANCHO_IMAGEN
+        #Si sale por la izquierda, vuelve por la derecha
+        if (pos_x + ANCHO_IMAGEN) < 0: pos_x = ANCHO_VENTANA
         
+        #Después de los cálculos dibujamos todo
         visor.fill(BLANCO)
         visor.blit(bicho, (pos_x, pos_y), (margen,MARGEN_SUPERIOR,ANCHO_PERSONAJE, ALTO_PERSONAJE))
         pygame.display.flip()
