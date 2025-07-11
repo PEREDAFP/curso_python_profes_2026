@@ -9,7 +9,10 @@
 Curso para docentes que quieren adentrarse en el mundo de la programación con un enfoque educativo, visual y divertido.
 Este curso fue impartido por primera vez en el CTIF-SUR en el curso 2025-26
 
-> **Objetivo:** Capacitar a profesores sin experiencia previa en programación para que aprendan Python y empiecen a crear sus propios videojuegos educativos con Pygame.
+## Objetivo
+
+Capacitar a profesores sin experiencia previa en programación para que aprendan Python e impartan esta asignatura explicando los
+fundamentos aplicados a un videojuego 2D
 
 ## Contenidos
 
@@ -26,13 +29,17 @@ Este curso fue impartido por primera vez en el CTIF-SUR en el curso 2025-26
    - Detectar colisiones y manejar sonido
 
 3. **Proyecto final**
+
    - Creación de un pequeño videojuego 2D desde cero
+
+4. **Muchas actividades y retos**
+   - Gran cantidad de actividades y retos listas para utilizar en el aula
 
 ---
 
 ## Requisitos
 
-**No se necesita experiencia previa.**
+No se necesita experiencia previa.
 
 Solo necesitas:
 
