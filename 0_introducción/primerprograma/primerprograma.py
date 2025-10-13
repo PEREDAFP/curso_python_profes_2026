@@ -6,7 +6,7 @@ print(f"Hola, {nombre}!")
 
 
 
-""" if nombre == "Pedro":floor
+""" if nombre == "Pedro"
     print("Pues el nombre que has introducido es Pedro")
     print("línea de más")
 else:
