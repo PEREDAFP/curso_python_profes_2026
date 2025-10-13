@@ -13,7 +13,7 @@ pygame.display.set_caption("Texto")
 fuente = pygame.font.SysFont("Arial", 100)
 
 # Variable en la que vamos a ir mostrando las pulsaciones
-contador = 0
+contador = 1230
 
 # Colores
 BLANCO = (255, 255, 255)
@@ -34,7 +34,20 @@ while True:
     # Dibujar en pantalla
     pantalla.fill(BLANCO)
     texto = fuente.render(str(contador), True, NEGRO)
+    #Si quisiéramos obtener el ancho y el alto del texto
+    ancho = texto.get_width()
+    alto = texto.get_height()
+    #Creamos un rectángulo
     rect_texto = texto.get_rect(center=(ANCHO // 2, ALTO // 2))
+    #Para darle ancho y alto al botón
+    rect_texto.size=(ancho,alto)
+    #Si quisiéramos darle fondo al texto con un borde, muy útil para botones en un menú
+    
+    pygame.draw.rect(pantalla, (0,255,0), rect_texto, border_radius=8)
+    
+
+                
+                
     pantalla.blit(texto, rect_texto)
 
     pygame.display.flip()

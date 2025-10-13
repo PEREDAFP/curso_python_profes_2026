@@ -50,6 +50,16 @@ while True:
     pantalla.fill(BLANCO)
     texto = fuente.render(str(contador), True, NEGRO)
     rect_texto = texto.get_rect(center=(ANCHO // 2, ALTO // 2))
+    #Si quisiéramos obtener el ancho y el alto del texto
+    ancho = texto.get_width()
+    alto = texto.get_height()
+    #Creamos un rectángulo
+    rect_texto = texto.get_rect(center=(ANCHO // 2, ALTO // 2))
+    #Para darle ancho y alto al botón
+    rect_texto.size=(ancho,alto)
+    #Si quisiéramos darle fondo al texto con un borde, muy útil para botones en un menú
+    
+    pygame.draw.rect(pantalla, (0,255,0), rect_texto, border_radius=8)
     pantalla.blit(texto, rect_texto)
 
     pygame.display.flip()

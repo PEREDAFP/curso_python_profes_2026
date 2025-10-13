@@ -1,0 +1,12 @@
+[
+  { "nombre": "Juego 1", "funcion": "juego1" },
+  { "nombre": "Juego 2", "funcion": "juego2" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Opciones", "funcion": "opciones" },
+  { "nombre": "Salir", "funcion": "salir" }
+]
