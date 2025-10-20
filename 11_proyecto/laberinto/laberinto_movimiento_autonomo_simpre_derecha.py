@@ -15,7 +15,12 @@ ROJO = (255, 0, 0)
 
 # Direcciones: (dy, dx) - derecha, abajo, izquierda, arriba
 DIRECCIONES = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-NOMBRES_DIRECCIONES = ['derecha', 'abajo', 'izquierda', 'arriba']
+#NOMBRES_DIRECCIONES = ['derecha', 'abajo', 'izquierda', 'arriba']
+#Estas imágenes deben ser de TAMANIO_CUADROxTAMANIO_CUADRO píxeles
+IMAGEN_DIRECCION = [ pygame.image.load('derecha.png'),
+                    pygame.image.load('abajo.png'),
+                    pygame.image.load('izquierda.png'),
+                    pygame.image.load('arriba.png')]
 
 # Leer el laberinto desde el archivo
 def leer_laberinto(archivo):
@@ -51,7 +56,7 @@ def main():
     
     # Posición inicial del jugador (en píxeles)
     # Buscamos la primera celda que no sea obstáculo
-    jugador_rect = pygame.Rect(0, 0, TAMANIO_CUADRO, TAMANIO_CUADRO)
+    jugador_rect = IMAGEN_DIRECCION[0].get_rect()
     encontrado = False
     for y in range(len(laberinto)):
         for x in range(len(laberinto[0])):
@@ -68,8 +73,6 @@ def main():
     colision = 0
     direccion = 0
 
-    print(jugador_rect.y)
-    print(jugador_rect.x)
     # Bucle principal
     while True:
         for event in pygame.event.get():
@@ -83,9 +86,7 @@ def main():
                         old_x, old_y = jugador_rect.x, jugador_rect.y
                         
                         jugador_rect.y += DIRECCIONES[direccion][0]*TAMANIO_CUADRO
-                        print(jugador_rect.y)
                         jugador_rect.x += DIRECCIONES[direccion][1]*TAMANIO_CUADRO
-                        print(jugador_rect.x)
                         movimientos += 1
                         
                         # Verificar colisiones con obstáculos
@@ -94,14 +95,11 @@ def main():
                                 jugador_rect.x, jugador_rect.y = old_x, old_y
                                 colision += 1
                                 direccion = (direccion + 1) % len(DIRECCIONES)
-                                print(jugador_rect.y)
-                                print(jugador_rect.x)
                                 break
                         
-                        # Verificar límites de la pantalla
+                        # Verificar límites de la pantalla. Si el robot sale de la pantalla es porque ha llegado al final
                         if (jugador_rect.x < 0 or jugador_rect.x >= ancho or
                             jugador_rect.y < 0 or jugador_rect.y >= alto):
-                            #Esto lo voy a cambiar por un juego_activo = False
                             juego_activo = False
             
         # Dibujar
@@ -111,15 +109,13 @@ def main():
             # Dibujar obstáculos
             for obstaculo in obstaculos:
                 pygame.draw.rect(pantalla, NEGRO, obstaculo)
-            
             # Dibujar jugador
-            pygame.draw.rect(pantalla, ROJO, jugador_rect)
+            pantalla.blit(IMAGEN_DIRECCION[direccion], jugador_rect)
         else:
+            #El juego ha terminado y se indican los movimientos y colisiones
             pantalla.fill(NEGRO)
             texto = fuente.render(f"Finalizado con {movimientos} movimientos y {colision} colisiones", True, BLANCO)
             rect_texto = texto.get_rect(center=(ancho // 2, alto // 2))
-            #Para darle ancho y alto al botón
-            #Si quisiéramos darle fondo al texto con un borde, muy útil para botones en un menú
             pygame.draw.rect(pantalla, NEGRO, rect_texto)                    
             pantalla.blit(texto, rect_texto)
             
