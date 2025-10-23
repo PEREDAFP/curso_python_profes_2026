@@ -25,7 +25,7 @@ IMAGEN_DIRECCION = [ pygame.image.load('derecha.png'),
 # Leer el laberinto desde el archivo
 def leer_laberinto(archivo):
     with open(archivo, 'r') as f:
-        return [list(linea.strip()) for linea in f.readlines()]
+        return [list(linea.rstrip('\n')) for linea in f.readlines()]
 
 # Crear lista de obstáculos (rectángulos)
 def crear_obstaculos(laberinto):

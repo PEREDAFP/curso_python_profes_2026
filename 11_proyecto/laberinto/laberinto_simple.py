@@ -18,7 +18,7 @@ DIRECCIONES = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 # Leer el laberinto desde el archivo
 def leer_laberinto(archivo):
     with open(archivo, 'r') as f:
-        return [list(linea.strip()) for linea in f.readlines()]
+        return [list(linea.rstrip('\n')) for linea in f.readlines()]
 
 # Crear lista de obstáculos (rectángulos)
 def crear_obstaculos(laberinto):
@@ -51,6 +51,7 @@ def main():
     # Buscamos la primera celda que no sea obstáculo para poner a nuestro robot
     jugador_rect = pygame.Rect(0, 0, TAMANIO_CUADRO, TAMANIO_CUADRO)
     encontrado = False
+    print(len(laberinto))
     for y in range(len(laberinto)):
         for x in range(len(laberinto[0])):
             if laberinto[y][x] != 'X':
