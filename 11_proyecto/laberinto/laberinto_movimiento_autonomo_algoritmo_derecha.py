@@ -1,5 +1,9 @@
-#Este código hace que el robot siempre gire a la derecha lo que puede llevar a bucles sin fin
-
+#Este código hace que el robot siempre deje a la derecha una pared
+#Si no obstáculo a la derecha: giro a la derecha y avanzo
+                        #En otro caso Si no obstáculo delante: avanzo
+                        #En otro caso si no obstáculo izquierda: giro izquierda y avanzo
+                        #En otro caso giro atrás y avanzo
+#Observamos que también puede llevar a bucles sin fin si se producen cuadrados en los
 import pygame
 import sys
 
@@ -36,6 +40,14 @@ def crear_obstaculos(laberinto):
                 rect = pygame.Rect(x * TAMANIO_CUADRO, y * TAMANIO_CUADRO, TAMANIO_CUADRO, TAMANIO_CUADRO)
                 obstaculos.append(rect)
     return obstaculos
+def comprobar_libre(rect, obstaculos, direccion):
+    nuevay = DIRECCIONES[direccion % 4][0]*TAMANIO_CUADRO
+    nuevax = DIRECCIONES[direccion % 4][1]*TAMANIO_CUADRO
+    nuevo_rect = rect.move(nuevax, nuevay)
+    for obstaculo in obstaculos:
+        if nuevo_rect.colliderect(obstaculo):
+            return False
+    return True
 
 # Función principal
 def main():
@@ -84,29 +96,21 @@ def main():
                 if event.type == pygame.KEYDOWN:    
                     if event.key == pygame.K_SPACE:
                         # Guardar la posición actual por si hay que revertir
-                        old_x, old_y = jugador_rect.x, jugador_rect.y
-                        nuevay = DIRECCIONES[(direccion+1)%4][0]*TAMANIO_CUADRO
-                        nuevax = DIRECCIONES[(direccion+1)%4][1]*TAMANIO_CUADRO
-                        nuevo_rect = jugador_rect.move(nuevax, nuevay)
-                        derecha_permitida = True
-                        for obstaculo in obstaculos:
-                            if nuevo_rect.colliderect(obstaculo):
-                                derecha_permitida = False
-                                break
-                        if derecha_permitida: print("Podría ir a la derecha")
+                        print(direccion)
+                        
+        
+                        if comprobar_libre(jugador_rect,obstaculos,direccion + 1): direccion =(direccion+1)%4                 
+                        elif comprobar_libre(jugador_rect,obstaculos,direccion): direccion =(direccion)%4
+                        elif comprobar_libre(jugador_rect,obstaculos,direccion+2): direccion =(direccion+2)%4
+                        elif comprobar_libre(jugador_rect,obstaculos,direccion+3):  direccion =(direccion+3)%4
+                        print(direccion)
+                        
                         
                         
                         jugador_rect.y += DIRECCIONES[direccion][0]*TAMANIO_CUADRO
                         jugador_rect.x += DIRECCIONES[direccion][1]*TAMANIO_CUADRO
                         movimientos += 1
                         
-                        # Verificar colisiones con obstáculos
-                        for obstaculo in obstaculos:
-                            if jugador_rect.colliderect(obstaculo):
-                                jugador_rect.x, jugador_rect.y = old_x, old_y
-                                colision += 1
-                                direccion = (direccion + 1) % len(DIRECCIONES)
-                                break
                         
                         # Verificar límites de la pantalla. Si el robot sale de la pantalla es porque ha llegado al final
                         if (jugador_rect.x < 0 or jugador_rect.x >= ancho or
@@ -122,7 +126,6 @@ def main():
                 pygame.draw.rect(pantalla, NEGRO, obstaculo)
             # Dibujar jugador
             
-            pygame.draw.rect(pantalla,ROJO, nuevo_rect)
             pantalla.blit(IMAGEN_DIRECCION[direccion], jugador_rect)
         else:
             #El juego ha terminado y se indican los movimientos y colisiones

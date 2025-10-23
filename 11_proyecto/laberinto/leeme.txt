@@ -1,0 +1,1 @@
+el fichero laberinto.txt, o el que se utilice en su defecto, debe tener la primera línea con todas las columnas en X
