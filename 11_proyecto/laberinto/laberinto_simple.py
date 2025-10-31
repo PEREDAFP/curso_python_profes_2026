@@ -50,8 +50,7 @@ def main():
     # Posición inicial del jugador (en píxeles)
     # Buscamos la primera celda que no sea obstáculo para poner a nuestro robot
     jugador_rect = pygame.Rect(0, 0, TAMANIO_CUADRO, TAMANIO_CUADRO)
-    encontrado = False
-    print(len(laberinto))
+    '''encontrado = False
     for y in range(len(laberinto)):
         for x in range(len(laberinto[0])):
             if laberinto[y][x] != 'X':
@@ -61,6 +60,11 @@ def main():
                 break
         if encontrado:
             break
+    '''
+    pos = next(
+    ((x, y) for y, fila in enumerate(laberinto) for x, celda in enumerate(fila) if celda != 'X'), None)
+    if pos:
+        jugador_rect.x, jugador_rect.y = pos[0] * TAMANIO_CUADRO, pos[1] * TAMANIO_CUADRO
     
     movimientos = 0
     juego_activo = True
