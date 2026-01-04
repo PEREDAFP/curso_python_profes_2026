@@ -94,19 +94,13 @@ def main():
                 sys.exit()
             if juego_activo:
                 if event.type == pygame.KEYDOWN:    
-                    if event.key == pygame.K_SPACE:
-                        # Guardar la posición actual por si hay que revertir
-                        print(direccion)
-                        
-        
+                    if event.key == pygame.K_SPACE:       
                         if comprobar_libre(jugador_rect,obstaculos,direccion + 1): direccion =(direccion+1)%4                 
                         elif comprobar_libre(jugador_rect,obstaculos,direccion): direccion =(direccion)%4
                         elif comprobar_libre(jugador_rect,obstaculos,direccion+2): direccion =(direccion+2)%4
                         elif comprobar_libre(jugador_rect,obstaculos,direccion+3):  direccion =(direccion+3)%4
-                        print(direccion)
                         
-                        
-                        
+                        #Cambiamos la direccón del jugador y aumentamos los movimientos
                         jugador_rect.y += DIRECCIONES[direccion][0]*TAMANIO_CUADRO
                         jugador_rect.x += DIRECCIONES[direccion][1]*TAMANIO_CUADRO
                         movimientos += 1
