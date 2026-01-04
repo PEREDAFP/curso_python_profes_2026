@@ -47,4 +47,5 @@ while True:
     pygame.display.flip()
 
     # Limitar a 60 FPS
+    # Cambia este 60 por otros valores diferentes: 20, 50, 100
     reloj.tick(60)
