@@ -21,7 +21,7 @@ ALTO_PERSONAJE = 175
 pos_x = 0
 pos_y = ALTO_VENTANA - ALTO_PERSONAJE
 
-AUMENTO_PIXELES_X = 2
+AUMENTO_PIXELES_X = 10
 #Para obtener desde dónde cortar la imagen
 margen = 0
 

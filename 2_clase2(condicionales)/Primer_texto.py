@@ -51,4 +51,4 @@ while True:
     pantalla.blit(texto, rect_texto)
 
     pygame.display.flip()
-    reloj.tick(FPS)
+    #reloj.tick(FPS)

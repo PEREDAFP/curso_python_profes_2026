@@ -48,13 +48,13 @@ while True:
 
     teclasPulsadas = pygame.key.get_pressed()
     if teclasPulsadas[pygame.K_a]:
-        pos -= 1
+        pos -= 10
         fase_mov -= 1
         if fase_mov <0: 
             fase_mov = len(movbicho) - 1
     
     if teclasPulsadas[pygame.K_s]:
-        pos += 1
+        pos += 10
         fase_mov += 1
         if fase_mov >= len(movbicho):
             fase_mov = 0
