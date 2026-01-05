@@ -35,7 +35,7 @@ cambio = 1
 
 # Reloj
 reloj = pygame.time.Clock()
-FPS = 150
+FPS = 60
 
 # Bucle principal
 while True:

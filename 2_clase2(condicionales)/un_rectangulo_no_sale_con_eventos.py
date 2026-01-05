@@ -36,9 +36,8 @@ cambio = 1
 # Reloj
 # Aquí vamos a utilizar eventos, por lo que nos interesa trabajar con pygame.key.set_repeat(1,10)
 # Recuerda que el segundo parámetro cuanto más bajo, más FPS.
-#reloj = pygame.time.Clock()
-#FPS = 150
-
+# Ten en cuenta que trabajar con eventos para el movimiento de un "personaje" es una  mala opción
+# en este caso lo estamos haciendo simplemente como ejercicio.
 # Bucle principal
 while True:
     for evento in pygame.event.get():
@@ -46,8 +45,8 @@ while True:
             pygame.quit()
             sys.exit()
         if evento.type == pygame.KEYDOWN:
+            # match ha sido introducido a partir de python 3.10. No funcionará en versiones anteriores
             match evento.key:
-                
                 case pygame.K_a:
                     #Cambiaremos rect1.x si rect1.x previo es mayor que cero
                     if rect1.x > 0: rect1.x -= cambio
@@ -60,8 +59,6 @@ while True:
                 case pygame.K_z:
                     #Cambiaremos rect1.y si su valor más la altura es menor que ALTO
                     if ( rect1.y + rect1.h ) < ALTO: rect1.y += cambio
-            
-   
         # Dibujar
     ventana.fill(BLANCO)
     pygame.draw.rect(ventana, ROJO, rect1)
