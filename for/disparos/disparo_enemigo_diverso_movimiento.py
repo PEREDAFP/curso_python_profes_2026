@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+#TODO: cambiar el direcion_x para el random en el movimiento
 
 # Inicializar Pygame
 pygame.init()

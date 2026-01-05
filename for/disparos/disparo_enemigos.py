@@ -70,7 +70,12 @@ while True:
         d.y -= vel_disparo
 
     # Eliminar disparos que salen de la pantalla
-    disparos = [d for d in disparos if d.bottom > 0]
+    for d in disparos:
+        if d.top < 0:
+            disparos.remove(d)
+
+    #Más elegante con comprehension list:
+    #disparos = [d for d in disparos if d.bottom > 0]
 
     # --- Detectar colisiones entre disparos y enemigos ---
     for d in disparos[:]:

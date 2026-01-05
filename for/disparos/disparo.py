@@ -11,6 +11,7 @@ pygame.display.set_caption("Rectángulo que dispara")
 
 # Reloj para controlar FPS
 clock = pygame.time.Clock()
+FPS = 60
 
 # Rectángulo del jugador
 jugador = pygame.Rect(400, 500, 50, 50)
@@ -49,7 +50,16 @@ while True:
         d.y -= vel_disparo  # mover hacia arriba
 
     # Eliminar disparos que salen de la pantalla
-    disparos = [d for d in disparos if d.bottom > 0]
+    #nuevos_disparos = []
+    for d in disparos:
+        if d.top < 10:
+            disparos.remove(d)
+            #nuevos_disparos.append(d)
+    print(len(disparos))
+    #disparos = nuevos_disparos
+
+    #Una forma más elegante con comprehension list
+    #disparos = [d for d in disparos if d.bottom > 0]
 
     # --- Dibujar todo ---
     screen.fill((30, 30, 30))  # fondo
@@ -59,4 +69,4 @@ while True:
         pygame.draw.rect(screen, color_disparo, d)  # disparos
 
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(FPS)
