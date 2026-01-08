@@ -1,4 +1,10 @@
-#Este código hace que el robot siempre gire a la derecha lo que puede llevar a bucles sin fin
+#Algorimo mano derecha:
+# Siempre antes de moverse:
+#    - Comprueba la celda de su derecha
+#    - Si está libre: gira a la derecha y avanza
+#    - Si no:
+#        - Mirar al frente y si está libre: avanzar
+#        - Si tampoco: girar a la izquierda sin avanzar y contamos una colisión
 
 import pygame
 import sys
@@ -22,6 +28,10 @@ IMAGEN_DIRECCION = [ pygame.image.load('derecha.png'),
                     pygame.image.load('izquierda.png'),
                     pygame.image.load('arriba.png')]
 
+def girar_derecha(d): return (d + 1) % 4
+def girar_izquierda(d): return (d - 1) % 4
+
+
 # Leer el laberinto desde el archivo
 def leer_laberinto(archivo):
     with open(archivo, 'r') as f:
@@ -36,6 +46,19 @@ def crear_obstaculos(laberinto):
                 rect = pygame.Rect(x * TAMANIO_CUADRO, y * TAMANIO_CUADRO, TAMANIO_CUADRO, TAMANIO_CUADRO)
                 obstaculos.append(rect)
     return obstaculos
+
+def puede_moverse(rect, direccion, obstaculos):
+    dx = DIRECCIONES[direccion][1] * TAMANIO_CUADRO
+    dy = DIRECCIONES[direccion][0] * TAMANIO_CUADRO
+
+    rect_prueba = rect.copy()
+    rect_prueba.x += dx
+    rect_prueba.y += dy
+
+    for obstaculo in obstaculos:
+        if rect_prueba.colliderect(obstaculo):
+            return False
+    return True
 
 # Función principal
 def main():
@@ -82,20 +105,21 @@ def main():
             if juego_activo:
                 if event.type == pygame.KEYDOWN:    
                     if event.key == pygame.K_SPACE:
-                        # Guardar la posición actual por si hay que revertir
-                        old_x, old_y = jugador_rect.x, jugador_rect.y
-                        
-                        jugador_rect.y += DIRECCIONES[direccion][0]*TAMANIO_CUADRO
-                        jugador_rect.x += DIRECCIONES[direccion][1]*TAMANIO_CUADRO
-                        movimientos += 1
-                        
-                        # Verificar colisiones con obstáculos
-                        for obstaculo in obstaculos:
-                            if jugador_rect.colliderect(obstaculo):
-                                jugador_rect.x, jugador_rect.y = old_x, old_y
-                                colision += 1
-                                direccion = (direccion + 1) % len(DIRECCIONES)
-                                break
+                       # comprobar derecha
+                        dir_derecha = girar_derecha(direccion)
+                        if puede_moverse(jugador_rect, dir_derecha, obstaculos):
+                            direccion = dir_derecha
+
+
+                        # comprobar frente
+                        if puede_moverse(jugador_rect, direccion, obstaculos):
+                            jugador_rect.y += DIRECCIONES[direccion][0] * TAMANIO_CUADRO
+                            jugador_rect.x += DIRECCIONES[direccion][1] * TAMANIO_CUADRO
+                            movimientos += 1
+                        else:
+                            # girar izquierda si no puede avanzar. Ya avanzará en la siguiente vuelta.
+                            direccion = girar_izquierda(direccion)
+                            colision += 1
                         
                         # Verificar límites de la pantalla. Si el robot sale de la pantalla es porque ha llegado al final
                         if (jugador_rect.x < 0 or jugador_rect.x >= ancho or

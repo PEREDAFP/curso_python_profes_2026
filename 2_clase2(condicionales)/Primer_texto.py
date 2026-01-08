@@ -41,6 +41,7 @@ while True:
     rect_texto = texto.get_rect(center=(ANCHO // 2, ALTO // 2))
     #Para darle ancho y alto al botón
     rect_texto.size=(ancho_texto,alto_texto)
+    
     #Si quisiéramos darle fondo al texto con un borde, muy útil para botones en un menú
     
     pygame.draw.rect(pantalla, (0,255,0), rect_texto, border_radius=8)
@@ -51,4 +52,4 @@ while True:
     pantalla.blit(texto, rect_texto)
 
     pygame.display.flip()
-    #reloj.tick(FPS)
+    reloj.tick(FPS)

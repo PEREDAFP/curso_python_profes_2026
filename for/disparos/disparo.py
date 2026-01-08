@@ -50,14 +50,10 @@ while True:
         d.y -= vel_disparo  # mover hacia arriba
 
     # Eliminar disparos que salen de la pantalla
-    #nuevos_disparos = []
     for d in disparos:
         if d.top < 10:
             disparos.remove(d)
-            #nuevos_disparos.append(d)
-    print(len(disparos))
-    #disparos = nuevos_disparos
-
+            
     #Una forma más elegante con comprehension list
     #disparos = [d for d in disparos if d.bottom > 0]
 
