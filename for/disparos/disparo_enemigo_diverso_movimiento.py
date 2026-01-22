@@ -1,8 +1,7 @@
 import pygame
 import sys
 import random
-#TODO: cambiar el direcion_x para el random en el movimiento
-
+#Hemos utilizado un diccionario como protoobjeto. En el siguiente ejercicio pasaremos a objeto
 # Inicializar Pygame
 pygame.init()
 
@@ -33,9 +32,7 @@ vel_horizontal = 2
 for i in range(5):
     x = random.randint(50, ANCHO - 50)
     y = random.randint(50, 200)
-    enemigo = pygame.Rect(x, y, 50, 50)
-    # Añadimos una dirección horizontal aleatoria: 1 = derecha, -1 = izquierda
-    enemigo.direccion_x = random.choice([-1, 1])
+    enemigo = {'rectangulo':pygame.Rect(x, y, 50, 50), 'direccion':random.choice([-1,1])}
     enemigos.append(enemigo)
 
 # Contador de enemigos eliminados
@@ -70,20 +67,20 @@ while True:
         # --- Movimiento enemigos ---
         for e in enemigos:
             # Movimiento vertical
-            e.y += vel_vertical
+            e['rectangulo'].y += vel_vertical
 
             # Movimiento horizontal
-            e.x += e.direccion_x * vel_horizontal
+            e['rectangulo'].x += e['direccion'] * vel_horizontal
 
             # Cambiar dirección si llega a los bordes
-            if e.left <= 0 or e.right >= ANCHO:
-                e.direccion_x *= -1
+            if e['rectangulo'].left <= 0 or e['rectangulo'].right >= ANCHO:
+                e['direccion'] *= -1
 
             # Si bajan del todo, los reposicionamos arriba
-            if e.top > ALTO:
-                e.y = random.randint(-100, -40)
-                e.x = random.randint(50, ANCHO - 50)
-                e.direccion_x = random.choice([-1, 1])
+            if e['rectangulo'].top > ALTO:
+                e['rectangulo'].y = random.randint(-100, -40)
+                e['rectangulo'].x = random.randint(50, ANCHO - 50)
+                e['direccion'] = random.choice([-1, 1])
 
         # --- Movimiento disparos ---
         for d in disparos:
@@ -93,7 +90,7 @@ while True:
         # --- Colisiones disparos-enemigos ---
         for d in disparos[:]:
             for e in enemigos[:]:
-                if d.colliderect(e):
+                if d.colliderect(e['rectangulo']):
                     disparos.remove(d)
                     enemigos.remove(e)
                     contador += 1  # aumentar contador
@@ -101,7 +98,7 @@ while True:
 
         # --- Colisiones enemigos-jugador ---
         for e in enemigos:
-            if e.colliderect(jugador):
+            if e['rectangulo'].colliderect(jugador):
                 juego_activo = False  # fin del juego
 
     # --- Dibujar ---
@@ -117,7 +114,7 @@ while True:
 
     # Dibujar enemigos
     for e in enemigos:
-        pygame.draw.rect(screen, color_enemigo, e)
+        pygame.draw.rect(screen, color_enemigo, e['rectangulo'])
 
     # Mostrar contador arriba a la izquierda
     texto_contador = fuente.render(f"Enemigos eliminados: {contador}", True, (255, 255, 255))
