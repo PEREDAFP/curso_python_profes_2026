@@ -22,6 +22,7 @@ FONT = pygame.font.SysFont("arial", 22)
 
 #Configuración Groq
 #cliente = Groq(api_key="")
+#hay que poner la API desde GROQ
 
 
 
