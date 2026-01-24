@@ -34,13 +34,10 @@ while True:
     # Dibujar en pantalla
     pantalla.fill(BLANCO)
     texto = fuente.render(str(contador), True, NEGRO)
-    #Si quisiéramos obtener el ancho y el alto del texto
-    ancho_texto = texto.get_width()
-    alto_texto = texto.get_height()
-    #Creamos un rectángulo
-    rect_texto = texto.get_rect(center=(ANCHO // 2, ALTO // 2))
-    #Para darle ancho y alto al botón
-    rect_texto.size=(ancho_texto,alto_texto)
+    rect_texto = texto.get_rect(center=(ANCHO/2,ALTO/2))
+    #Con el plugin de pyhon para VSCode teclearemos rect_texto. y observaremos las propiedades y métodos del rectángulo
+    #rect_texto.x = ANCHO /2
+    #rect_texto.y = ALTO /2
     
     #Si quisiéramos darle fondo al texto con un borde, muy útil para botones en un menú
     
