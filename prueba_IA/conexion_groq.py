@@ -21,7 +21,7 @@ Y_AUMENTO = 30
 FONT = pygame.font.SysFont("arial", 22)
 
 #Configuración Groq
-cliente = Groq(api_key="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")
+cliente = Groq(api_key="")
 
 
 
