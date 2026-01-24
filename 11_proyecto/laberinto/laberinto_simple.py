@@ -78,7 +78,7 @@ def main():
                 sys.exit()
             if juego_activo:
                 if event.type == pygame.KEYDOWN:
-                    # Guardar la posición actual por si hay que revertir
+                    # Guardar la posición actual por si hay colisión y tenemos que volver al inicio
                     old_x, old_y = jugador_rect.x, jugador_rect.y
                     
                     if event.key == pygame.K_UP:
@@ -89,8 +89,6 @@ def main():
                         jugador_rect.x -= TAMANIO_CUADRO
                     elif event.key == pygame.K_RIGHT:
                         jugador_rect.x += TAMANIO_CUADRO
-                    print(jugador_rect.y)
-                    print(jugador_rect.x)
                     movimientos += 1
                     
                     # Verificar colisiones con obstáculos
