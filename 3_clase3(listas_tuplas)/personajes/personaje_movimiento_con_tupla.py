@@ -48,19 +48,22 @@ while True:
 
     teclasPulsadas = pygame.key.get_pressed()
     if teclasPulsadas[pygame.K_a]:
+        #Aquí hay un número mágico. Cámbialo
         pos -= 10
         fase_mov -= 1
         if fase_mov <0: 
             fase_mov = len(movbicho) - 1
     
     if teclasPulsadas[pygame.K_s]:
+        #Aquí hay un número mágico. Cámbialo
         pos += 10
         fase_mov += 1
         if fase_mov >= len(movbicho):
             fase_mov = 0
     
-    visor.fill(BLANCO)
+    # visor.fill(BLANCO)
+    # El 100 que aparece aquí ¿no te parece un número mágico? Pues a cambiar esto
     visor.blit(bicho, (pos,100), movbicho[fase_mov])
-    pygame.display.flip()
+    #pygame.display.flip()
     reloj.tick(FPS)
     
