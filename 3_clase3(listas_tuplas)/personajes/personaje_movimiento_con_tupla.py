@@ -13,8 +13,7 @@ ALTO = 400
 visor = pygame.display.set_mode((ANCHO,ALTO))
  
 pygame.display.set_caption("Movimientos Personaje desde lista")
- 
-#bicho = pygame.image.load('Ken1.png')
+#Vamos a trabajar con imágenes. En algún sitio habrá que decirle que suba esa imagen ¿no? 
 bicho = pygame.image.load('hombreAndando.png')
 
 #Colores
@@ -61,9 +60,10 @@ while True:
         if fase_mov >= len(movbicho):
             fase_mov = 0
     
-    # visor.fill(BLANCO)
+    visor.fill(BLANCO)
     # El 100 que aparece aquí ¿no te parece un número mágico? Pues a cambiar esto
+    # blit es un nuevo método que va a permitir dibujar imágenes externas en pygame.
     visor.blit(bicho, (pos,100), movbicho[fase_mov])
-    #pygame.display.flip()
+    pygame.display.flip()
     reloj.tick(FPS)
     

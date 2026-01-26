@@ -1,6 +1,6 @@
 """
 BOCETO DE JUEGO CONVERSACIONAL
-ChatGPT + Pygame (estructura base)
+Modelo LLM + Pygame (estructura base)
 --------------------------------
 Este ejemplo muestra la arquitectura general.
 NO incluye una clave real de API.
@@ -32,7 +32,7 @@ entrada_usuario = ""
 # ------------------ IA (SIMULADA) ------------------
 def responder_ia(texto_usuario):
     """
-    Aquí iría la llamada real a ChatGPT.
+    Aquí iría la llamada real a nuestro LLM.
     De momento devolvemos respuestas simuladas.
     """
     texto_usuario = texto_usuario.lower()

@@ -1,3 +1,14 @@
+"""
+BOCETO DE JUEGO CONVERSACIONAL
+Modelo Groq + Pygame (estructura base)
+--------------------------------
+Este ejemplo muestra la arquitectura general.
+NO incluye una clave real de API.
+Para instalar groq: pip3 install groq
+En ocasiones los servidores LLM cambian sus librerías por lo que es posible encontrarnos errores
+
+Sería ideal montar un servidor IA local y realizar en él las llamadas API
+"""
 import pygame
 import sys
 from groq import Groq
@@ -15,6 +26,7 @@ Y_AUMENTO = 30
 FONT = pygame.font.SysFont("arial", 22)
 
 #Configuración Groq
+#Se obtiene en https://console.groq.com/
 cliente = Groq(api_key="")
 #hay que poner la API desde GROQ
 
@@ -52,7 +64,9 @@ def responder_ia(texto_usuario):
             {"role": "system", "content": "Eres Gödel, el gran lógico. Responde en 1-2 frases."},
             {"role": "user", "content": texto_usuario}
         ]
-        
+        # Configuramos la llamada al modelo
+        # Se pueden realizar prácticas con cambios de temperatura y modelo proporcionados por el proveedor
+        # temperatura: a más baja (0-0.5) más predecible la respuesta. Superior a 0.5 más aleatoria y ¿creativa? 
         respuesta = cliente.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=messages,
