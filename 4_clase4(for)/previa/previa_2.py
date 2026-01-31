@@ -1,0 +1,65 @@
+import pygame
+import sys
+#Añadiremos un segundo rectángulo
+#Al descomentar 01 probaremos que podemos capturar una colisión
+#Al descomentar 02, y volver a comentar 01, comprobaremos que no vamos a poder mover el rectángulo 1 porque choca con el rectángulo 2
+# Inicializar Pygame
+pygame.init()
+
+# Configurar ventana
+ANCHO, ALTO = 600, 400
+ventana = pygame.display.set_mode((ANCHO, ALTO))
+pygame.display.set_caption("Vamos a crear varios rectángulos")
+
+# Colores
+BLANCO = (255, 255, 255)
+ROJO = (255, 0, 0)
+AZUL = (0,0,255)
+
+# Rectángulo 1 (rojo)
+
+rect1 = pygame.Rect(100, 100, 50, 50)
+rect2 = pygame.Rect(150,100,50,50)
+
+# cambio de x según pulsación
+cambio = 5
+
+# Reloj
+reloj = pygame.time.Clock()
+FPS = 60
+
+# Bucle principal
+while True:
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    teclas = pygame.key.get_pressed()
+    # 02 Vamos a copiar las coordenadas por si ha habido un choque retomar al anterior sitio
+    old_x, old_y = rect1.x, rect1.y
+    # Movimiento del rectángulo rojo 
+    if teclas[pygame.K_a]:
+        #Cambiaremos rect1.x si rect1.x previo es mayor que cero
+        if rect1.x > 0: rect1.x -= cambio
+    if teclas[pygame.K_s]:
+        #Cambiaremos rect1.x más su ancho es menor que ANCHO
+        if ( rect1.x + rect1.w ) < ANCHO: rect1.x += cambio
+    if teclas[pygame.K_w]:
+        #Cambiaremos rect1.y si su valor es mayor que 0
+        if rect1.y > 0: rect1.y -= cambio
+    if teclas[pygame.K_z]:
+        #Cambiaremos rect1.y si su valor más la altura es menor que ALTO
+        if ( rect1.y + rect1.h ) < ALTO: rect1.y += cambio
+
+    # 01 Mostraremos que ha habido alguna colisión
+    #if rect1.colliderect(rect2): print("Estamos en la zona del rectángulo 2")
+    # 02 Si ha habido colisión lo que hacemos es retomar las coordenadas previas y aquí no ha pasado nada
+    #if rect1.colliderect(rect2): rect1.x,rect1.y = old_x, old_y 
+    # Dibujar
+    ventana.fill(BLANCO)
+    pygame.draw.rect(ventana, ROJO, rect1)
+    pygame.draw.rect(ventana, AZUL, rect2)
+    pygame.display.flip()
+
+    reloj.tick(FPS)
