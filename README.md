@@ -34,6 +34,7 @@ fundamentos aplicados a un videojuego 2D
 
 4. **Muchas actividades y retos**
    - Gran cantidad de actividades y retos listas para utilizar en el aula
+   -
 
 ---
 
