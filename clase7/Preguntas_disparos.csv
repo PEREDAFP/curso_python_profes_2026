@@ -1,0 +1,53 @@
+¿Qué función de Pygame se utiliza al inicio del código para inicializar todos los módulos importados?,pygame.init()
+¿Qué método se emplea para crear la ventana del juego con las dimensiones definidas por ANCHO y ALTO?,"pygame.display.set_mode((ANCHO, ALTO))"
+"En el código, ¿qué objeto de Pygame se utiliza para controlar y limitar los fotogramas por segundo (FPS)?",pygame.time.Clock()
+"Para representar al jugador como una forma geométrica, el código utiliza la clase _____.",pygame.Rect
+¿Cuáles son los cuatro parámetros necesarios para inicializar un objeto pygame.Rect?,"Posición x, posición y, ancho y alto."
+"Según el código, ¿cuál es el color del jugador definido en el formato RGB (0, 200, 255)?",Un tono de azul claro o cian.
+¿Qué valor inicial se le asigna a la variable 'vidas' del jugador?,3
+¿Qué estructura de datos se utiliza para almacenar los disparos activos tanto del jugador como de los enemigos?,Listas (disparos y disparos_enemigos).
+¿Qué constante define la posibilidad de que un enemigo dispare en cada iteración del bucle?,PROBABILIDAD_DISPARO (con un valor de 0.01).
+¿Cómo se determina en el código si un enemigo debe disparar en un momento dado?,Mediante la condición random.random() < PROBABILIDAD_DISPARO.
+Los enemigos se almacenan como diccionarios; ¿qué clave de ese diccionario contiene la forma física del enemigo?,La clave 'rectangulo'.
+"En el movimiento horizontal de los enemigos, ¿qué operación se realiza para invertir su dirección al tocar los bordes?",e['direccion'] *= -1
+¿Cuál es la función del método pygame.event.get() dentro del bucle principal?,"Obtener y procesar todos los eventos ocurridos, como pulsar teclas o cerrar la ventana."
+¿Qué tipo de evento se dispara cuando el usuario presiona la cruz de cierre de la ventana?,pygame.QUIT
+¿Qué tecla debe presionar el jugador para generar un nuevo Rect en la lista de disparos?,pygame.K_SPACE
+¿Qué función de Pygame permite detectar si el usuario mantiene pulsada una tecla de dirección?,pygame.key.get_pressed()
+¿Cuál es la condición para que el jugador pueda moverse hacia la izquierda sin salirse de la pantalla?,jugador.left > 0
+¿Cuál es la condición para que el jugador pueda moverse hacia la derecha sin salirse del ANCHO?,jugador.right < ANCHO
+"Para que los disparos del jugador se muevan hacia arriba, se debe _____ el valor de su coordenada y.",Restar (d.y -= vel_disparo).
+¿Qué propiedad del objeto Rect se comprueba para eliminar los disparos del jugador que salen por la parte superior?,d.bottom > 0 (se mantienen mientras la parte inferior sea mayor a 0).
+¿Qué propiedad del objeto Rect se comprueba para eliminar los disparos enemigos que salen por la parte inferior?,de.top < ALTO
+¿Qué método de pygame.Rect se utiliza para detectar si un disparo ha tocado a un enemigo?,colliderect
+"Cuando ocurre una colisión entre un disparo del jugador y un enemigo, ¿qué sucede con la variable 'contador'?",Se incrementa en 1.
+¿Qué sucede con la variable 'juego_activo' cuando las vidas del jugador llegan a 0?,Se establece en False.
+¿Qué comando se utiliza para limpiar la pantalla al principio de cada frame con un color gris oscuro?,"screen.fill((30, 30, 30))"
+¿Qué función se utiliza para dibujar los rectángulos de los personajes y proyectiles en la pantalla?,"pygame.draw.rect(screen, color, rect)"
+¿Qué método de la fuente se usa para crear una superficie de texto con el número de enemigos eliminados?,"fuente.render(texto, True, color)"
+¿Qué método se utiliza para dibujar una superficie de texto (u otra imagen) en una posición específica de la pantalla?,"screen.blit(superficie, posicion)"
+¿Qué mensaje se muestra en pantalla cuando 'juego_activo' es False y 'vidas' es 0?,¡GAME OVER!
+¿Bajo qué condición se muestra el mensaje '¡HAS GANADO!'?,Cuando juego_activo es True y la lista de enemigos está vacía.
+¿Qué función actualiza el contenido de la ventana completa para mostrar los nuevos dibujos?,pygame.display.flip()
+¿A cuántos FPS (fotogramas por segundo) está limitado el juego mediante clock.tick()?,60
+"Al reiniciar la posición de un enemigo que sale de la pantalla, ¿qué rango de valores se usa para su nueva coordenada y?","random.randint(-100, -40)"
+¿Cómo se calcula la posición horizontal inicial de los disparos del jugador para que salgan de su centro?,jugador.centerx - 5
+¿Qué sucede si un enemigo colisiona directamente con el rectángulo del jugador?,La variable juego_activo cambia a False.
+"En Pygame, la coordenada $y = 0$ representa la parte _____ de la ventana.",Superior
+"Para crear un objeto de fuente en el código, se utiliza la función _____.",pygame.font.SysFont
+¿Qué representa el segundo parámetro (el booleano) en el método render de una fuente?,El suavizado de los bordes o antialiasing.
+"Si un disparo enemigo colisiona con el jugador, ¿cuántas vidas se restan?",1
+¿Cuál es la velocidad vertical constante aplicada a los enemigos en cada frame?,2
+¿Qué función de la biblioteca 'sys' se llama para cerrar completamente el programa?,sys.exit()
+"¿Qué indica el valor (255, 0, 0) en el renderizado del mensaje '¡GAME OVER!'?",El color rojo puro.
+¿Cómo se centra el mensaje final en la pantalla utilizando el rect del mensaje?,"mensaje.get_rect(center=(ANCHO // 2, ALTO // 2))"
+"En el bucle de enemigos, ¿qué propiedad del Rect se usa para detectar si el enemigo ha pasado el límite inferior de la pantalla?",e['rectangulo'].top > ALTO
+¿Qué función se utiliza para elegir aleatoriamente entre la dirección izquierda (-1) y derecha (1)?,"random.choice([-1, 1])"
+Concepto: Bucle Principal (Game Loop),"Definición: Ciclo infinito (while True) que mantiene el juego ejecutándose, procesando entrada, actualizando lógica y dibujando."
+¿Por qué se utiliza 'break' después de eliminar un enemigo y un disparo en el bucle de colisiones?,Para evitar errores al modificar la lista 'disparos' mientras se sigue iterando sobre ella.
+¿Cuál es el color de los disparos de los enemigos según el código?,"(255, 100, 100), que es un tono rojizo."
+¿Qué ocurre con el flujo del programa si 'juego_activo' es False pero el bucle 'while True' sigue activo?,"El juego deja de actualizar la lógica y el movimiento, mostrando solo el mensaje final y permitiendo cerrar la ventana."
+"Al crear un disparo enemigo, ¿desde qué parte del rectángulo del enemigo se origina?",Desde e['rectangulo'].bottom (la parte inferior del enemigo).
+¿Qué método se usa para establecer el título de la ventana del juego?,pygame.display.set_caption()
+¿Qué valor tiene la variable 'velocidad' que afecta el movimiento del jugador?,5
+"En Pygame, si incrementamos el valor de la coordenada $x$, el objeto se mueve hacia la _____.",Derecha
